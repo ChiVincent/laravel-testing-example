@@ -30,4 +30,16 @@ class PostCreateServiceTest extends TestCase
             'content' => $post->content,
         ]);
     }
+
+    public function testPostButCannotPost()
+    {
+        $user = $this->mock(User::class);
+        $user->shouldReceive('canPostArticle')->once()->andReturn(false);
+
+        $post = factory(Post::class)->make(['user_id' => null]);
+        $service = app(PostCreateService::class);
+
+        $this->expectException(\Exception::class);
+        $service->post($user, $post->title, $post->content);
+    }
 }
