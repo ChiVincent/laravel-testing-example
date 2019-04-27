@@ -26,7 +26,7 @@ class ResetPasswordTest extends TestCase
     public function testResetPassword()
     {
         $user = factory(User::class)->create();
-        DB::insert('INSERT INTO password_resets (`email`, `token`, `created_at`) VALUES (?, ?, ?)',[
+        DB::insert('INSERT INTO password_resets (`email`, `token`, `created_at`) VALUES (?, ?, ?)', [
             $user->email,
             Hash::make('custom-token'),
             now()
