@@ -1,10 +1,10 @@
 {
-    "name": "laravel/laravel",
+    "name": "chivincent/laravel-testing-example",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "A demo for laravel testing.",
     "keywords": [
-        "framework",
-        "laravel"
+        "laravel",
+        "testing"
     ],
     "license": "MIT",
     "require": {
