@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Post;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,5 +20,15 @@ class UserTest extends TestCase
             'https://www.gravatar.com/avatar/' . md5(strtolower(trim($user->email))),
             $user->getGravatar()
         );
+    }
+
+    public function testPostsRelation()
+    {
+        $user = factory(User::class)->create();
+        $posts = factory(Post::class, 3)->create([
+            'user_id' => $user,
+        ]);
+
+        $this->assertEquals($posts->toArray(), $user->posts->toArray());
     }
 }
